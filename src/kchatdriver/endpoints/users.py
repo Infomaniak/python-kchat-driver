@@ -122,3 +122,6 @@ class Users(Base):
 
     def get_stats(self):
         return self.client.get(self.endpoint + "/stats")
+
+    def user_is_typing(self, user_id, options=None):
+        return self.client.post(self.endpoint + "/" + user_id + "/typing", options=options)
