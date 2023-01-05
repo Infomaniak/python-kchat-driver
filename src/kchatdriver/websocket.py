@@ -5,7 +5,7 @@ import pysher
 import time
 
 log = logging.getLogger("kchat.websocket")
-log.setLevel(logging.INFO)
+log.setLevel(logging.WARN)
 
 
 class Websocket:
@@ -62,7 +62,7 @@ class Websocket:
                 custom_host=self.options["websocket_url"],
                 auth_endpoint="https://{}/broadcasting/auth".format(self.options["url"]),
                 auth_endpoint_headers={"Authorization": f"Bearer {self._token}"},
-                log_level=logging.INFO,
+                log_level=log.getEffectiveLevel(),
                 auto_sub=True,
             )
 
@@ -81,7 +81,7 @@ class Websocket:
         we react a TimeoutError. If we don't the webserver would close the idle connection,
         forcing us to reconnect.
         """
-        log.warning("Starting websocket loop")
+        log.info("Starting websocket loop")
         while self._alive:
             time.sleep(10)
             self.pusher.connection.send_ping()
