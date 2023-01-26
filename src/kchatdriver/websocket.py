@@ -38,7 +38,7 @@ class Websocket:
         channel = self.pusher.subscribe("private-team.{}".format(self._team_id))
         channel.bind("status_change", self.status_change_callback)
 
-        channel = self.pusher.subscribe("private-teamUser.{}".format(self._team_user_id))
+        channel = self.pusher.subscribe("presence-teamUser.{}".format(self._team_user_id))
         channel.bind("pusher_internal:subscription_succeeded", self.hello_callback)
         channel.bind("posted", self.posted_callback)
 

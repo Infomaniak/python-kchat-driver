@@ -43,6 +43,6 @@ setup(
     install_requires=[
         'requests~=2.27.1',
         'pusher~=3.3.0',
-        'pysher~=1.0.8',
+        'infomaniakpysher~=0.0.1',
     ],
 )
