@@ -34,13 +34,10 @@ class Websocket:
         asyncio.run(self.event_handler(json.dumps({"event": "pusher_internal:subscription_succeeded"})))
 
     def connect_handler(self, data, *args):
-
-        channel = self.pusher.subscribe("private-team.{}".format(self._team_id))
-        channel.bind("status_change", self.status_change_callback)
-
         channel = self.pusher.subscribe("presence-teamUser.{}".format(self._team_user_id))
         channel.bind("pusher_internal:subscription_succeeded", self.hello_callback)
         channel.bind("posted", self.posted_callback)
+        channel.bind("status_change", self.status_change_callback)
 
     async def connect(self, event_handler):
 
